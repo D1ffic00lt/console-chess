@@ -9,15 +9,17 @@ class Horse(Figure):
     def check_move(self, to_x, to_y, desk):
         if (0 > to_x > 8) or (0 > to_y > 8):
             return False
+        if desk.get_figure((to_x, to_y)).color == self.color:
+            return False
         self.possible_moves = [
-            (self.x + 1, self.y + 2),
-            (self.x + 1, self.y - 2),
             (self.x - 1, self.y + 2),
-            (self.x - 1, self.y - 2),
-            (self.x + 2, self.y + 1),
-            (self.x + 2, self.y - 1),
             (self.x - 2, self.y + 1),
             (self.x - 2, self.y - 1),
+            (self.x - 1, self.y - 2),
+            (self.x + 1, self.y - 2),
+            (self.x + 2, self.y - 1),
+            (self.x + 2, self.y + 1),
+            (self.x + 1, self.y - 2),
         ]
         if (to_x, to_y) not in self.possible_moves:
             return False

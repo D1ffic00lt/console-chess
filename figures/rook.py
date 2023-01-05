@@ -8,6 +8,8 @@ class Rook(Figure):
     def check_move(self, to_x, to_y, desk):
         if (0 > to_x > 8) or (0 > to_y > 8):
             return False
+        if desk.get_figure((to_x, to_y)).color == self.color:
+            return False
         if to_y != self.y and to_x != self.x:
             return False
 

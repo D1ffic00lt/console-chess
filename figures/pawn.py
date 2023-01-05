@@ -8,7 +8,10 @@ class Pawn(Figure):
         self.first = True
         self.possible_moves = []
 
-    def check_move(self, to_y, to_x, desk):
+    def check_move(self, to_x, to_y, desk):
+        print(to_x, to_y)
+        if desk.get_figure((to_x, to_y)).color == self.color:
+            return False
         return True
         # elif self.x + 1 == to_x and self.y + 1 == to_y:
         #     if not isinstance(desk[to_x][to_y], Empty):

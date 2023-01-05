@@ -45,32 +45,30 @@ class Desk(object):
         for y in range(8):
             desk_line = []
             for x in range(8):
-                if y == 1:
-                    desk_line.append(Pawn(x, y, "b"))
-                elif y == 6:
-                    desk_line.append(Pawn(x, y, "w"))
-                else:
-                    desk_line.append(Empty(x, y, None))
+                desk_line.append(Empty(y, x, "e"))
             desk_full.append(desk_line)
+        for i in range(8):
+            desk_full[1][i] = Pawn(1, i, "b")
+            desk_full[6][i] = Pawn(6, i, "w")
         desk_full[0][1] = Horse(0, 1, "b")
-        desk_full[0][-2] = Horse(0, -2, "b")
-        desk_full[-1][1] = Horse(-1, 1, "w")
-        desk_full[-1][-2] = Horse(-1, -2, "w")
+        desk_full[0][6] = Horse(0, 6, "b")
+        desk_full[7][1] = Horse(7, 1, "w")
+        desk_full[7][6] = Horse(7, 6, "w")
 
         desk_full[0][2] = Elephant(0, 2, "b")
-        desk_full[0][-3] = Elephant(0, -3, "b")
-        desk_full[-1][2] = Elephant(-1, 2, "w")
-        desk_full[-1][-3] = Elephant(-1, -3, "w")
+        desk_full[0][5] = Elephant(0, 5, "b")
+        desk_full[7][2] = Elephant(7, 2, "w")
+        desk_full[7][5] = Elephant(7, 5, "w")
 
         desk_full[0][0] = Rook(0, 0, "b")
-        desk_full[0][-1] = Rook(0, -1, "b")
-        desk_full[-1][0] = Rook(-1, 0, "w")
-        desk_full[-1][-1] = Rook(-1, -1, "w")
+        desk_full[0][7] = Rook(0, 7, "b")
+        desk_full[7][0] = Rook(7, 0, "w")
+        desk_full[7][7] = Rook(7, 7, "w")
 
         desk_full[0][3] = Queen(0, 3, "b")
-        desk_full[-1][3] = Queen(-1, 3, "w")
+        desk_full[7][3] = Queen(7, 3, "w")
 
         desk_full[0][4] = King(0, 4, "b")
-        desk_full[-1][4] = King(-1, 4, "w")
-
+        desk_full[7][4] = King(7, 4, "w")
+        print(*desk_full, sep="\n")
         return desk_full

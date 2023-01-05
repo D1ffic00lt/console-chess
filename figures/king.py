@@ -8,6 +8,8 @@ class King(Figure):
     def check_move(self, to_x, to_y, desk):
         if (0 > to_x > 8) or (0 > to_y > 8):
             return False
+        if desk.get_figure((to_x, to_y)).color == self.color:
+            return False
         if abs(self.x - to_x) != 1 or abs(self.y - to_y) != 1:
             return False
         return True
