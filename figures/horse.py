@@ -7,7 +7,10 @@ class Horse(Figure):
         self.possible_moves = []
 
     def check_move(self, to_x, to_y, desk):
+        if self.position == (to_x, to_y):
+            return False
         if (0 > to_x > 8) or (0 > to_y > 8):
+            print(1)
             return False
         if desk.get_figure((to_x, to_y)).color == self.color:
             return False

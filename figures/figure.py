@@ -23,5 +23,10 @@ class Figure(object):
     def y(self, value: int):
         self.position = (value, self.position[1])
 
+    def set_position(self, x: int, y: int):
+        self.position = (x, y)
+        self.x = x
+        self.y = y
+
     def __repr__(self):
         return f"{self.__module__}({self.x}, {self.y}, {self.color})"

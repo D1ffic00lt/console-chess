@@ -14,7 +14,7 @@ if __name__ == "__main__":
             if desk.get_figure(pos_from).check_move(*pos_to, desk):
                 desk.do_move(pos_from, pos_to)
                 clear_output()
-                color = "b" if color == "w" else "w"
+                # color = "b" if color == "w" else "w"
             else:
                 clear_output()
                 print("NO")

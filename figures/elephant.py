@@ -12,6 +12,8 @@ class Elephant(Figure):
         self.s = True
 
     def check_move(self, to_x, to_y, desk):
+        if self.x == to_x and self.y == to_y:
+            return False
         if (0 > to_x > 8) or (0 > to_y > 8):
             return False
         if desk.get_figure((to_x, to_y)).color == self.color:
@@ -19,48 +21,33 @@ class Elephant(Figure):
         self.possible_moves = []
         self.set_true()
         for i in range(1, 8):
-            print(self.x + i, self.y + i)
             if self.n:
+                print(self.x + i, self.y + i)
                 if (0 > self.x + i or self.x + i >= 8) or (0 > self.y + i or self.y + i >= 8):
                     self.n = False
-                elif isinstance(desk.desk[self.x + i][self.y + i], Empty):
+                elif isinstance(desk.get_figure((self.x + i, self.y + i)), Empty):
                     self.possible_moves.append((self.x + i, self.y + i))
-                elif desk.desk[self.x + i][self.y + i].color == self.color:
-                    self.n = False
-                else:
-                    self.possible_moves.append((self.x + i, self.y + i))
-                    self.n = False
             if self.s:
-                if (0 > self.x + i or self.x + i >= 8) or (0 > self.y - i or self.y - i >= 8):
-                    self.s = False
-                elif isinstance(desk.desk[self.x + i][self.y - i], Empty):
-                    self.possible_moves.append((self.x + i, self.y - i))
-                elif desk.desk[self.x + i][self.y - i].color == self.color:
-                    self.s = False
-                else:
-                    self.possible_moves.append((self.x + i, self.y - i))
-                    self.s = False
-            if self.e:
+                print(self.x - i, self.y - i)
                 if (0 > self.x - i or self.x - i >= 8) or (0 > self.y - i or self.y - i >= 8):
-                    self.e = False
-                elif isinstance(desk.desk[self.x - i][self.y - i], Empty):
+                    self.s = False
+                elif isinstance(desk.get_figure((self.x - i, self.y - i)), Empty):
                     self.possible_moves.append((self.x - i, self.y - i))
-                elif desk.desk[self.x - i][self.y - i].color == self.color:
-                    self.e = False
-                else:
-                    self.possible_moves.append((self.x - i, self.y - i))
-                    self.e = False
-            if self.w:
+            if self.e:
+                print(self.x - i, self.y + i)
                 if (0 > self.x - i or self.x - i >= 8) or (0 > self.y + i or self.y + i >= 8):
-                    self.w = False
-                elif isinstance(desk.desk[self.x - i][self.y + i], Empty):
+                    self.e = False
+                elif isinstance(desk.get_figure((self.x - i, self.y + i)), Empty):
                     self.possible_moves.append((self.x - i, self.y + i))
-                elif desk.desk[self.x - i][self.y + i].color == self.color:
+            if self.w:
+                print(self.x + i, self.y - i)
+                if (0 > self.x + i or self.x + i >= 8) or (0 > self.y - i or self.y - i >= 8):
                     self.w = False
-                else:
-                    self.possible_moves.append((self.x - i, self.y + i))
-                    self.w = False
+                elif isinstance(desk.get_figure((self.x + i, self.y - i)), Empty):
+                    self.possible_moves.append((self.x + i, self.y - i))
+        print(self.possible_moves)
         if (to_x, to_y) not in self.possible_moves:
+            print(3)
             return False
         return True
 
